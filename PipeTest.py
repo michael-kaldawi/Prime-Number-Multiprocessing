@@ -10,6 +10,9 @@ This program implements a prime number finder utilizing the sieve
 of Eratosthenes, multiprocessing, and communication via pipes.
 """
 
+# Note: we are using numpy for our array processing to speed up
+# runtime. numpy needs to be installed/ imported for this
+# program to work.
 from multiprocessing import Process, Pipe
 import math
 import cProfile
@@ -109,14 +112,14 @@ def main():
             data.append(i)
         children[process].join()
 
-#    print_primes(2, data)
+    # write the prime numbers to 'primes.txt'
     cProfile.runctx('write_primes(file_name="primes.txt", '
                     'mode="w", start=2, array=data)',
                     globals(), locals())
 
 
-# This is our 'main' function. The first lines of code
-# are executed here.
+# This is our 'main' function. The first line of code
+# executed in this program is 'main()'
 #
 # This function executes main().
 # Only the parent process can run this function.
